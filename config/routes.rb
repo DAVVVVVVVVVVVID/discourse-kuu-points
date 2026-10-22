@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
+DiscourseKuuPoints::Engine.routes.draw do
+  get "/summary" => "tasks#summary"
+  post "/tasks/:task" => "tasks#complete", :constraints => { task: /checkin|share/ }
 end
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw { mount ::DiscourseKuuPoints::Engine, at: "kuu-points" }
