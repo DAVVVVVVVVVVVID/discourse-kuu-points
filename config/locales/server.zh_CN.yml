@@ -1,0 +1,16 @@
+zh_CN:
+  site_settings:
+    kuu_points_enabled: "启用 KUU 经验值和鲸币（等级、每日任务、鲸币商城、头像装饰）。"
+    kuu_points_checkin_xp: "每日签到得到的经验。"
+    kuu_points_checkin_coins: "每日签到得到的鲸币。"
+    kuu_points_topic_xp: "每天第一个新话题得到的经验。"
+    kuu_points_topic_coins: "每天第一个新话题得到的鲸币。"
+    kuu_points_reply_xp: "每天第一次回复得到的经验。"
+    kuu_points_reply_coins: "每天第一次回复得到的鲸币。"
+    kuu_points_like_xp: "每天第一次给别人的帖子点赞得到的经验。"
+    kuu_points_like_coins: "每天第一次给别人的帖子点赞得到的鲸币。"
+    kuu_points_share_xp: "每天第一次转发（复制链接、保存或复制分享图）得到的经验。"
+    kuu_points_share_coins: "每天第一次转发（复制链接、保存或复制分享图）得到的鲸币。"
+  kuu_points:
+    errors:
+      cannot_earn: "被封禁或禁言的用户暂时不能获得奖励。"

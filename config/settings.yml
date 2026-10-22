@@ -1,4 +1,44 @@
-TODO_plugin_name:
-  plugin_name_enabled:
+discourse_kuu_points:
+  kuu_points_enabled:
     default: false
     client: true
+  kuu_points_checkin_xp:
+    default: 10
+    min: 0
+    max: 1000
+  kuu_points_checkin_coins:
+    default: 5
+    min: 0
+    max: 1000
+  kuu_points_topic_xp:
+    default: 10
+    min: 0
+    max: 1000
+  kuu_points_topic_coins:
+    default: 5
+    min: 0
+    max: 1000
+  kuu_points_reply_xp:
+    default: 5
+    min: 0
+    max: 1000
+  kuu_points_reply_coins:
+    default: 3
+    min: 0
+    max: 1000
+  kuu_points_like_xp:
+    default: 5
+    min: 0
+    max: 1000
+  kuu_points_like_coins:
+    default: 3
+    min: 0
+    max: 1000
+  kuu_points_share_xp:
+    default: 5
+    min: 0
+    max: 1000
+  kuu_points_share_coins:
+    default: 3
+    min: 0
+    max: 1000

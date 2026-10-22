@@ -1,1 +1,16 @@
 en:
+  site_settings:
+    kuu_points_enabled: "Enable KUU points (experience levels, coins, daily tasks, coin shop and avatar decorations)."
+    kuu_points_checkin_xp: "Experience for the daily check-in."
+    kuu_points_checkin_coins: "Coins for the daily check-in."
+    kuu_points_topic_xp: "Experience for the first new topic of the day."
+    kuu_points_topic_coins: "Coins for the first new topic of the day."
+    kuu_points_reply_xp: "Experience for the first reply of the day."
+    kuu_points_reply_coins: "Coins for the first reply of the day."
+    kuu_points_like_xp: "Experience for the first like given to someone else's post each day."
+    kuu_points_like_coins: "Coins for the first like given to someone else's post each day."
+    kuu_points_share_xp: "Experience for the first share (copy link or share image) of the day."
+    kuu_points_share_coins: "Coins for the first share (copy link or share image) of the day."
+  kuu_points:
+    errors:
+      cannot_earn: "Suspended or silenced users cannot earn rewards."
