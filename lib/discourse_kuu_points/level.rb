@@ -10,10 +10,15 @@ module DiscourseKuuPoints
       [xp / XP_PER_LEVEL + 1, MAX].min
     end
 
+    # 到达这一级要的总经验
+    def self.level_xp(level)
+      (level - 1) * XP_PER_LEVEL
+    end
+
     # 升到下一级要的总经验；满级是 nil
     def self.next_level_xp(xp)
       level = self.for(xp)
-      level * XP_PER_LEVEL if level < MAX
+      level_xp(level + 1) if level < MAX
     end
   end
 end

@@ -4,3 +4,52 @@ zh_CN:
       site_settings:
         categories:
           discourse_kuu_points: "KUU 经验值和鲸币"
+  js:
+    kuu_points:
+      level:
+        title: "等级 %{level}"
+        short: "Lv%{level}"
+      reward: "+%{xp} 经验 +%{coins} 鲸币"
+      tasks:
+        checkin: "签到"
+        topic: "发一个新话题"
+        reply: "回复一次"
+        like: "给别人点一次赞"
+        share: "转发一次"
+      kinds:
+        frame: "头像框"
+        accessory: "饰品"
+      reasons:
+        checkin: "签到"
+        topic: "每天第一个帖子"
+        reply: "每天第一次评论"
+        like: "每天第一次点赞"
+        share: "每天第一次转发"
+        redeem: "兑换「%{item}」"
+        adjust: "管理员调整：%{note}"
+      shop:
+        title: "鲸币商城"
+        xp: "经验 %{amount}"
+        max_level: "已满级"
+        to_next_level: "再得 %{amount} 经验升到 Lv%{level}"
+        coins: "鲸币 %{amount}"
+        tasks_title: "今日任务"
+        checkin: "签到"
+        checked_in: "已签到"
+        items_title: "商品"
+        redeem: "兑换"
+        redeem_confirm: "用 %{price} 鲸币兑换「%{name}」吗？兑换后永久拥有。"
+        owned: "已拥有"
+        equipped: "佩戴中"
+        no_items: "这里还没有商品"
+        mine_title: "我的装饰"
+        mine_hint: "同时最多戴一个头像框和一个饰品。"
+        equip: "佩戴"
+        unequip: "取下"
+        no_owned: "还没有兑换过装饰"
+        entries_title: "明细"
+        entry_xp: "经验 %{amount}"
+        entry_coins: "鲸币 %{amount}"
+        more_entries: "加载更多"
+        no_entries: "还没有记录"
+        login_hint: "登录后可以签到、做每日任务、用鲸币兑换头像装饰。"

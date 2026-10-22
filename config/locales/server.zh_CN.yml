@@ -14,3 +14,5 @@ zh_CN:
   kuu_points:
     errors:
       cannot_earn: "被封禁或禁言的用户暂时不能获得奖励。"
+      not_enough_coins: "鲸币不够。"
+      already_owned: "你已经拥有这件商品了。"

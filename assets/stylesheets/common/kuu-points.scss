@@ -1,0 +1,345 @@
+// 品牌色：藏青、樱花粉、浅雾蓝、米白
+$kuu-navy: #0a2d56;
+$kuu-sakura: #ed8690;
+$kuu-mist: #c0d1e4;
+$kuu-cream: #fcf9f2;
+
+// 用户名旁的「Lv3」。1 级浅雾蓝，2–4 级藏青，满级樱花粉
+.kuu-points-level {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0 0.45em;
+  border-radius: 0.75em;
+  background: $kuu-navy;
+  color: $kuu-cream;
+  font-size: var(--font-down-2);
+  font-weight: 600;
+  line-height: 1.6;
+  vertical-align: middle;
+  white-space: nowrap;
+  align-self: flex-start;
+  width: fit-content;
+
+  &--1 {
+    background: $kuu-mist;
+    color: $kuu-navy;
+  }
+
+  &--5 {
+    background: $kuu-sakura;
+    color: #fff;
+  }
+}
+
+// 头像装饰：画布是头像的 1.5 倍、同一个中心（图片规格见 README）
+.kuu-points-decoration {
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  max-width: none;
+  pointer-events: none;
+  z-index: 1;
+
+  &--accessory {
+    z-index: 2;
+  }
+}
+
+.post-avatar,
+.user-card-avatar,
+.user-profile-avatar {
+  &:has(.kuu-points-decoration) {
+    position: relative;
+  }
+}
+
+// 用户卡片和个人主页的头像大，装饰多出来的一圈（头像宽度的 1/4）会压到用户名、超出卡片，留出位置
+.user-card-avatar:has(.kuu-points-decoration) {
+  margin: 3.5em 1.75em 1.25em 1.25em;
+}
+
+.user-profile-avatar:has(.kuu-points-decoration) {
+  margin: 2.25em 2.25em 1.5em 1.5em;
+}
+
+.kuu-points-shop {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 2em;
+
+  &__title {
+    color: $kuu-navy;
+  }
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    padding: 1.5em;
+    border-radius: 12px;
+    background: $kuu-cream;
+    border: 1px solid $kuu-mist;
+  }
+
+  &__avatar {
+    position: relative;
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    margin: 24px;
+
+    img.avatar {
+      width: 96px;
+      height: 96px;
+    }
+  }
+
+  &__stats {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__level {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+    .kuu-points-level {
+      margin-left: 0;
+      font-size: var(--font-up-1);
+    }
+  }
+
+  &__xp {
+    color: $kuu-navy;
+    font-weight: 600;
+  }
+
+  &__progress {
+    width: 100%;
+    height: 10px;
+    margin-top: 0.5em;
+    border: none;
+    border-radius: 5px;
+    background: $kuu-mist;
+    appearance: none;
+
+    &::-webkit-progress-bar {
+      border-radius: 5px;
+      background: $kuu-mist;
+    }
+
+    &::-webkit-progress-value {
+      border-radius: 5px;
+      background: $kuu-sakura;
+    }
+
+    &::-moz-progress-bar {
+      border-radius: 5px;
+      background: $kuu-sakura;
+    }
+  }
+
+  &__progress-text {
+    margin: 0.25em 0 0;
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+  }
+
+  &__coins {
+    margin: 0.5em 0 0;
+    color: $kuu-navy;
+    font-size: var(--font-up-1);
+    font-weight: 600;
+
+    .d-icon {
+      color: #e0a526;
+    }
+  }
+
+  &__section {
+    margin-top: 2em;
+
+    h2 {
+      color: $kuu-navy;
+      font-size: var(--font-up-2);
+    }
+  }
+
+  &__task-list,
+  &__entry-list,
+  &__grid {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__task {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    min-height: 2.5em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--primary-low);
+
+    &--done .kuu-points-shop__task-check {
+      color: $kuu-sakura;
+    }
+  }
+
+  &__task-check {
+    color: var(--primary-low-mid);
+  }
+
+  &__task-label {
+    flex: 1;
+  }
+
+  &__task-reward,
+  &__checked-in {
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  &__tab {
+    border-bottom: 2px solid transparent;
+
+    &--selected {
+      border-bottom-color: $kuu-sakura;
+      color: $kuu-navy;
+      font-weight: 600;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1em;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4em;
+    padding: 1em 0.5em;
+    border: 1px solid var(--primary-low);
+    border-radius: 10px;
+    text-align: center;
+
+    &--equipped {
+      border-color: $kuu-sakura;
+      background: $kuu-cream;
+    }
+  }
+
+  // 后面垫一个头像大小的圆（宽度的 2/3），看得出装饰戴上后的位置
+  &__item-image {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle closest-side,
+      $kuu-mist 66%,
+      transparent 67%
+    );
+  }
+
+  &__item-name {
+    font-weight: 600;
+  }
+
+  &__item-price {
+    color: $kuu-navy;
+
+    .d-icon {
+      color: #e0a526;
+    }
+  }
+
+  &__item-state {
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+  }
+
+  &__hint,
+  &__empty {
+    color: var(--primary-medium);
+  }
+
+  &__entry {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--primary-low);
+  }
+
+  &__entry-date {
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+    white-space: nowrap;
+  }
+
+  &__entry-amounts {
+    display: flex;
+    gap: 0.5em;
+    white-space: nowrap;
+  }
+
+  &__entry-xp {
+    color: $kuu-navy;
+  }
+
+  &__entry-coins {
+    color: #b07a00;
+  }
+
+  &__more-entries {
+    margin-top: 1em;
+  }
+
+  @media (width <= 600px) {
+    &__summary {
+      gap: 0.5em;
+      padding: 1em;
+    }
+
+    &__avatar {
+      width: 64px;
+      height: 64px;
+      margin: 16px;
+
+      img.avatar {
+        width: 64px;
+        height: 64px;
+      }
+    }
+
+    &__grid {
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+
+    &__item-image {
+      width: 72px;
+      height: 72px;
+    }
+
+    &__entry {
+      grid-template-columns: 1fr auto;
+    }
+
+    &__entry-date {
+      grid-column: 1 / -1;
+    }
+  }
+}
