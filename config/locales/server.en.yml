@@ -16,3 +16,4 @@ en:
       cannot_earn: "Suspended or silenced users cannot earn rewards."
       not_enough_coins: "Not enough coins."
       already_owned: "You already own this item."
+      below_zero: "The balance cannot go below zero."

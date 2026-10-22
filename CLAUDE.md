@@ -31,6 +31,9 @@
 - 装饰图片规格写在 README（300×300 透明 PNG，头像占中间直径 200）。前端叠加层是头像的 1.5 倍、同一个中心
 - 帖子页的等级和装饰用 `topic_view.kuu_points_decorations` 一次查出；用户卡片、个人主页用 `user_card` 序列化器
 - 鲸币商城页 `/kuu-shop`（`.json` 是页面数据）。侧边栏「话题」下面的入口由主题组件加，插件只加头像菜单「个人资料」栏的入口
+- 商品图片在 `Item` 的 `after_save` 里登记 `UploadReference`，否则 core 清理没人引用的上传时会被删掉
+- 管理后台只给管理员（不含版主）：`/admin/plugins/discourse-kuu-points/items`、`/adjust`。商品建好后类型不能改；
+  手动调整记明细（reason `adjust`，`note` 是原因、`acting_user_id` 是管理员）并写 `log_custom("kuu_points_adjust")`
 - 测试商品：`bin/rake kuu_points:demo_items`（图片由 `script/make_demo_items.sh` 生成）
 
 ## 开发环境（共用开发容器，先读 `~/.claude/CLAUDE.md`）
@@ -41,6 +44,8 @@
 - 开发库迁移：`docker exec -u discourse -w /src discourse_dev bin/rake db:migrate`
 - 系统测试、Playwright 截图、重启开发服务器要排队：`flock ~/discourse/tmp/kuu-heavy.lock <命令>`；先看 `free -m`
 - 截图放 `screenshots/`，临时文件放 `~/discourse/tmp/discourse-kuu-points/`
+- 改了 SCSS 后系统测试里还是旧样式：删掉本插件测试库的样式缓存
+  `rm -f ~/discourse/tmp/cache/assets/test/stylesheet-manifest-test_8 && rm -rf ~/discourse/tmp/stylesheet-cache/test_8`
 - 截图不用开发库：系统测试里调用 `screenshot("名字")`，带 `KUU_SCREENSHOTS=1` 跑时存到 `screenshots/`（kuu-rspec 不传这个变量，
   照 kuu-rspec 的写法直接 `docker exec ... -e KUU_SCREENSHOTS=1 ... flock /src/tmp/kuu-heavy.lock bin/rspec plugins/discourse-kuu-points/spec/system/xxx_spec.rb`）
 - 新加的插件（或改了 `plugin.rb`）要重启开发服务器才会加载。2026-10-22 见过开发服务器的主进程不在、只剩孤儿 pitchfork worker 的情况，
