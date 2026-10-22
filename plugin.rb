@@ -9,6 +9,12 @@
 
 enabled_site_setting :kuu_points_enabled
 
+register_asset "stylesheets/common/kuu-points.scss"
+
+register_svg_icon "coins"
+register_svg_icon "circle-check"
+register_svg_icon "far-circle"
+
 module ::DiscourseKuuPoints
   PLUGIN_NAME = "discourse-kuu-points"
 
@@ -37,4 +43,20 @@ after_initialize do
   on(:like_created) do |post_action, _creator|
     DiscourseKuuPoints::DailyTask.like_created(post_action) if SiteSetting.kuu_points_enabled
   end
+
+  # 帖子里头像上的装饰和用户名旁的等级。帖子页一次查出所有发帖人，避免每条帖子查一次
+  add_to_class(:topic_view, :kuu_points_decorations) do
+    @kuu_points_decorations ||= DiscourseKuuPoints::Decoration.for_users(posts.map(&:user_id).uniq)
+  end
+
+  add_to_serializer(:post, :kuu_points, include_condition: -> { object.user_id.present? }) do
+    if @topic_view
+      @topic_view.kuu_points_decorations[object.user_id] || DiscourseKuuPoints::Decoration::DEFAULT
+    else
+      DiscourseKuuPoints::Decoration.for_user(object.user_id)
+    end
+  end
+
+  # 用户卡片和个人主页（UserSerializer 继承 UserCardSerializer）
+  add_to_serializer(:user_card, :kuu_points) { DiscourseKuuPoints::Decoration.for_user(object.id) }
 end

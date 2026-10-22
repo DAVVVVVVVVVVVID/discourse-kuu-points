@@ -11,6 +11,7 @@ module DiscourseKuuPoints
         level: account.level,
         max_level: Level::MAX,
         xp: account.xp,
+        level_xp: Level.level_xp(account.level),
         next_level_xp: Level.next_level_xp(account.xp),
         coins: account.coins,
         tasks:

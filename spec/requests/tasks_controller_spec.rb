@@ -118,6 +118,7 @@ RSpec.describe DiscourseKuuPoints::TasksController do
         "level" => 1,
         "max_level" => 5,
         "xp" => 0,
+        "level_xp" => 0,
         "next_level_xp" => 200,
         "coins" => 0,
       )
@@ -136,6 +137,7 @@ RSpec.describe DiscourseKuuPoints::TasksController do
       expect(response.parsed_body).to include(
         "level" => 5,
         "xp" => 800,
+        "level_xp" => 800,
         "next_level_xp" => nil,
         "coins" => 8,
       )

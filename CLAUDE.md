@@ -16,16 +16,22 @@
      第一次回复 5 / 3（含评分短评，聊天不算）；第一次给**别人**的帖子点赞 5 / 3；第一次转发 5 / 3
    - 数值是站点设置 `kuu_points_<任务>_xp` / `kuu_points_<任务>_coins`，任务名 `checkin topic reply like share`
    - 删帖、取消点赞**不扣**；所有用户参与（含运营号和鲸仔）；老用户从 0 开始，不补发
-   - 被封禁 / 禁言的用户不发奖励；系统账号、staged 用户也不发
+   - 被封禁 / 禁言的用户不发奖励；系统账号、staged 用户也不发（2026-10-22 David 确认）
+   - 私信里的发帖、回复、点赞不算任务；密语和小动作帖子不算（2026-10-22 David 确认）
 3. 「转发」发生在主题组件 discourse-kuu-theme 的分享菜单里，插件只提供接口 `POST /kuu-points/tasks/share`，主题那边的改动由 David 另开 Issue
 4. 鲸币商城、兑换、佩戴（同时最多一个头像框 + 一个饰品）、头像装饰显示位置（帖子头像、用户卡片、个人主页）、管理后台：见 Issue #1 第 3–5 条
 5. 不在第一期：连续签到奖励、等级特权、鲸币换别的东西、列表 / 聊天小头像装饰、排行榜
 
 ## 自己定的技术细节（写进 Notion 方案）
-- 私信里的发帖、回复、点赞不算任务；密语和小动作帖子不算（2026-10-22）
 - 数据：`kuu_points_accounts` 每人一行当前值（xp、coins，都有 `>= 0` 约束）；`kuu_points_entries` 明细一笔一行，
   每日任务带 `task_date`，`(user_id, reason, task_date)` 部分唯一索引防并发重复发放
 - 加减只走 `Account.credit!`（条件 UPDATE，扣成负数时返回 false），和写明细放在同一个事务里
+- 商品 `kuu_points_items`（frame / accessory，图片是 upload）、拥有 `kuu_points_user_items`（唯一索引防重复兑换）、
+  佩戴记在账户的 `frame_item_id` / `accessory_item_id`。下架的商品已拥有的人照样能戴
+- 装饰图片规格写在 README（300×300 透明 PNG，头像占中间直径 200）。前端叠加层是头像的 1.5 倍、同一个中心
+- 帖子页的等级和装饰用 `topic_view.kuu_points_decorations` 一次查出；用户卡片、个人主页用 `user_card` 序列化器
+- 鲸币商城页 `/kuu-shop`（`.json` 是页面数据）。侧边栏「话题」下面的入口由主题组件加，插件只加头像菜单「个人资料」栏的入口
+- 测试商品：`bin/rake kuu_points:demo_items`（图片由 `script/make_demo_items.sh` 生成）
 
 ## 开发环境（共用开发容器，先读 `~/.claude/CLAUDE.md`）
 - 本仓库位于 WSL 的 `~/discourse/plugins/discourse-kuu-points`，Discourse 源码在 `~/discourse`（官方仓库，不要改）
@@ -35,6 +41,10 @@
 - 开发库迁移：`docker exec -u discourse -w /src discourse_dev bin/rake db:migrate`
 - 系统测试、Playwright 截图、重启开发服务器要排队：`flock ~/discourse/tmp/kuu-heavy.lock <命令>`；先看 `free -m`
 - 截图放 `screenshots/`，临时文件放 `~/discourse/tmp/discourse-kuu-points/`
+- 截图不用开发库：系统测试里调用 `screenshot("名字")`，带 `KUU_SCREENSHOTS=1` 跑时存到 `screenshots/`（kuu-rspec 不传这个变量，
+  照 kuu-rspec 的写法直接 `docker exec ... -e KUU_SCREENSHOTS=1 ... flock /src/tmp/kuu-heavy.lock bin/rspec plugins/discourse-kuu-points/spec/system/xxx_spec.rb`）
+- 新加的插件（或改了 `plugin.rb`）要重启开发服务器才会加载。2026-10-22 见过开发服务器的主进程不在、只剩孤儿 pitchfork worker 的情况，
+  那时只能整个重启（排队锁里，回复里说明）
 - lint 在容器里跑：`docker exec -u discourse -w /src discourse_dev bin/lint --fix plugins/discourse-kuu-points/<文件>`。
   rubocop 有 `corrected` 时再跑一遍；推送前照 CI 检查：
   `docker exec -u discourse -w /src/plugins/discourse-kuu-points discourse_dev bash -lc 'bundle exec stree check Gemfile $(git ls-files "*.rb")'`

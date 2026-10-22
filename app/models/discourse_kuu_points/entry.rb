@@ -8,6 +8,7 @@ module DiscourseKuuPoints
     belongs_to :user
     belongs_to :post, optional: true
     belongs_to :acting_user, class_name: "User", optional: true
+    belongs_to :item, optional: true
 
     # 记一笔每日任务。这个任务今天已经记过（包括并发的另一个请求刚记上）时返回 nil
     def self.record_task(user_id:, task:, task_date:, xp:, coins:, post_id: nil)
@@ -42,6 +43,7 @@ end
 #  xp             :integer          default(0), not null
 #  created_at     :datetime         not null
 #  acting_user_id :integer
+#  item_id        :bigint
 #  post_id        :integer
 #  user_id        :integer          not null
 #

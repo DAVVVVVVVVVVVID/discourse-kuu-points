@@ -4,3 +4,52 @@ en:
       site_settings:
         categories:
           discourse_kuu_points: "KUU points"
+  js:
+    kuu_points:
+      level:
+        title: "Level %{level}"
+        short: "Lv%{level}"
+      reward: "+%{xp} XP +%{coins} coins"
+      tasks:
+        checkin: "Check in"
+        topic: "Create a new topic"
+        reply: "Reply once"
+        like: "Like someone else's post"
+        share: "Share once"
+      kinds:
+        frame: "Avatar frames"
+        accessory: "Accessories"
+      reasons:
+        checkin: "Check-in"
+        topic: "First topic of the day"
+        reply: "First reply of the day"
+        like: "First like of the day"
+        share: "First share of the day"
+        redeem: "Redeemed \"%{item}\""
+        adjust: "Adjusted by staff: %{note}"
+      shop:
+        title: "Coin shop"
+        xp: "%{amount} XP"
+        max_level: "Max level"
+        to_next_level: "%{amount} XP to Lv%{level}"
+        coins: "%{amount} coins"
+        tasks_title: "Today's tasks"
+        checkin: "Check in"
+        checked_in: "Checked in"
+        items_title: "Items"
+        redeem: "Redeem"
+        redeem_confirm: "Redeem \"%{name}\" for %{price} coins? You will keep it forever."
+        owned: "Owned"
+        equipped: "Wearing"
+        no_items: "No items here yet"
+        mine_title: "My decorations"
+        mine_hint: "You can wear one avatar frame and one accessory at a time."
+        equip: "Wear"
+        unequip: "Take off"
+        no_owned: "You have not redeemed any decorations yet"
+        entries_title: "History"
+        entry_xp: "%{amount} XP"
+        entry_coins: "%{amount} coins"
+        more_entries: "Load more"
+        no_entries: "No records yet"
+        login_hint: "Log in to check in, complete daily tasks and redeem avatar decorations."
