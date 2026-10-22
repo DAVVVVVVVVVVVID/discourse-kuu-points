@@ -10,5 +10,6 @@ RSpec.describe DiscourseKuuPoints::DemoItems do
     item = DiscourseKuuPoints::Item.find_by(name: "一朵樱花")
     expect(item).to have_attributes(kind: "accessory", price: 20, enabled: true)
     expect(item.upload.extension).to eq("png")
+    expect(UploadReference.exists?(upload_id: item.upload_id, target: item)).to eq(true)
   end
 end

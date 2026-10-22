@@ -8,6 +8,8 @@ module DiscourseKuuPoints
     KINDS = %w[frame accessory].freeze
 
     belongs_to :upload
+    # 登记引用，core 定期清理没人引用的上传时不会删掉商品图片
+    has_many :upload_references, as: :target, dependent: :destroy
 
     scope :enabled, -> { where(enabled: true) }
     scope :ordered, -> { order(:position, :id) }
@@ -15,6 +17,12 @@ module DiscourseKuuPoints
     validates :name, presence: true, length: { maximum: 50 }
     validates :kind, inclusion: { in: KINDS }
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+    after_save do
+      if saved_change_to_upload_id?
+        UploadReference.ensure_exist!(upload_ids: [upload_id], target: self)
+      end
+    end
 
     def image_url
       Discourse.store.cdn_url(upload.url) if upload
