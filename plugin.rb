@@ -11,6 +11,8 @@ enabled_site_setting :kuu_points_enabled
 
 register_asset "stylesheets/common/kuu-points.scss"
 
+add_admin_route "kuu_points.admin.title", "discourse-kuu-points", use_new_show_route: true
+
 register_svg_icon "coins"
 register_svg_icon "circle-check"
 register_svg_icon "far-circle"

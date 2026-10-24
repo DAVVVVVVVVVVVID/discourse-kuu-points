@@ -343,3 +343,84 @@ $kuu-cream: #fcf9f2;
     }
   }
 }
+
+.kuu-points-admin {
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+
+  &__hint {
+    margin: 0;
+    color: var(--primary-medium);
+  }
+
+  &__item-overview {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+  }
+
+  &__item-image {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle closest-side,
+      $kuu-mist 66%,
+      transparent 67%
+    );
+  }
+
+  &__item-name {
+    font-weight: 600;
+  }
+
+  &__item--disabled {
+    .kuu-points-admin__item-name,
+    .kuu-points-admin__status {
+      color: var(--primary-medium);
+    }
+  }
+}
+
+.kuu-points-admin-adjust {
+  max-width: 720px;
+
+  &__account {
+    margin-top: 2em;
+  }
+
+  &__user a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &__entries {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__entry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--primary-low);
+  }
+
+  &__entry-date,
+  &__entry-admin {
+    color: var(--primary-medium);
+  }
+
+  &__entry-amounts {
+    margin-left: auto;
+  }
+}

@@ -55,6 +55,19 @@ export default {
         </template>
       );
 
+      if (api.getCurrentUser()?.admin) {
+        api.addAdminPluginConfigurationNav("discourse-kuu-points", [
+          {
+            label: "kuu_points.admin.items",
+            route: "adminPlugins.show.kuu-points-items",
+          },
+          {
+            label: "kuu_points.admin.adjust_title",
+            route: "adminPlugins.show.kuu-points-adjust",
+          },
+        ]);
+      }
+
       // 点头像后菜单里「个人资料」那一栏。侧边栏「话题」下面的入口由主题组件加
       if (api.getCurrentUser()) {
         api.addQuickAccessProfileItem({

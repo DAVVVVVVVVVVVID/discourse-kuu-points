@@ -15,6 +15,7 @@ module DiscourseKuuPoints
     scope :ordered, -> { order(:position, :id) }
 
     validates :name, presence: true, length: { maximum: 50 }
+    validates :upload, presence: true
     validates :kind, inclusion: { in: KINDS }
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 

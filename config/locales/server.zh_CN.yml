@@ -16,3 +16,4 @@ zh_CN:
       cannot_earn: "被封禁或禁言的用户暂时不能获得奖励。"
       not_enough_coins: "鲸币不够。"
       already_owned: "你已经拥有这件商品了。"
+      below_zero: "扣完会变成负数，没有调整。"
